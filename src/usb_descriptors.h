@@ -27,7 +27,7 @@
 
 enum
 {
-  REPORT_ID_KEYBOARD = 1
+	REPORT_ID_KEYBOARD = 1
 };
 
 #endif /* USB_DESCRIPTORS_H_ */
