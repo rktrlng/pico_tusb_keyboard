@@ -1,0 +1,11 @@
+#!/bin/bash
+
+file=keyboard
+
+cd build
+make ${file}
+cp src/${file}.uf2 /media/$USER/RPI-RP2
+cd ..
+
+# sleep 2
+# minicom -o -D /dev/ttyACM0
