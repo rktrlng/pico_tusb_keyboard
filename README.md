@@ -34,3 +34,5 @@ Insert the Pico with the BOOTSEL button pressed. After it's mounted:
 ```bash
 ./upload
 ```
+
+The upload script will compile the code and upload the compiled firmware to the pico.
