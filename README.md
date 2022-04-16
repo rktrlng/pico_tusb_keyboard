@@ -4,7 +4,7 @@ USB HID Keyboard for Pico RP2040 with TinyUSB.
 
 This is an adapted copy of the hid_composite example from [TinyUSB](https://github.com/hathach/tinyusb/tree/master/examples/device/hid_composite) showing how to build with TinyUSB when using the Raspberry Pi Pico SDK. This repository optimizes the REPORT_ID_KEYBOARD reports.
 
-### Keyboard
+## Keyboard
 
 In `keyboard.h` a USB HID Keyboard report is created from pin inputs on the Pico. 
 
@@ -16,6 +16,10 @@ const PinKey pin_keys[num_pins] = { // connect pin to keycode
 	{ 17, HID_KEY_ENTER }
 };
 ```
+
+## Hardware
+
+The input pins are pulled down to ground when not pressed. Connect a pin to 3.3 volt to generate a key press for that pin.
 
 ## Getting started
 
