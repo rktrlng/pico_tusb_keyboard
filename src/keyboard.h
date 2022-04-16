@@ -21,16 +21,25 @@ struct PinKey {
 class KeyBoard
 {
 private:
+	uint32_t state = 0; // 'register' for the state of 32 keys
+
 	// ===========================================================================
 	// set these values to your situation
-	const static int num_pins = 2; // state keeps track of max 32 pins (uint32_t)
-	const PinKey pin_keys[num_pins] = { // connect pin to keycode
-		{ 16, HID_KEY_A },
-		{ 17, HID_KEY_ENTER }
+	const static int num_pins = 11; // // max 32 pins (state is uint32_t)
+	const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
+		{ 2, HID_KEY_W },
+		{ 3, HID_KEY_A },
+		{ 4, HID_KEY_S },
+		{ 5, HID_KEY_D },
+		{ 16, HID_KEY_ARROW_UP },
+		{ 17, HID_KEY_ARROW_DOWN },
+		{ 18, HID_KEY_ARROW_LEFT },
+		{ 19, HID_KEY_ARROW_RIGHT },
+		{ 20, HID_KEY_ENTER },
+		{ 21, HID_KEY_SPACE },
+		{ 22, HID_KEY_SHIFT_LEFT }
 	};
 	// ===========================================================================
-
-	uint32_t state = 0; // register for 32 pins
 
 public:
 	uint8_t key_codes[6] = { 0 }; // we can send max 6 keycodes per hid-report
@@ -62,7 +71,7 @@ public:
 		uint32_t new_state = 0;
 		for (int i = 0; i < num_pins; i++) {
 			int p = gpio_get(pin_keys[i].pin); // read pin for this key
-			if (p == 1)	{ // pressed
+			if (p == 1) { // pressed
 				key_codes[index] = pin_keys[i].key; // set keycode
 				new_state |= (1 << i); // set bit for the pin
 
