@@ -87,6 +87,8 @@ public:
 			return true;
 		}
 
+		state = new_state;
+
 		// nothing changed
 		return false;
 	}
