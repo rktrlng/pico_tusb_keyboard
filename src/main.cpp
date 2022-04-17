@@ -84,17 +84,17 @@ static void send_hid_report(bool keys_pressed)
 	}
 
 	// use to avoid send multiple consecutive zero report for keyboard
-	static bool has_keyboard_key = false;
+	static bool send_empty = false;
 
 	if (keys_pressed) {
 		tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, keyboard.key_codes);
-		has_keyboard_key = true;
+		send_empty = true;
 	} else {
 		// send empty key report if previously has key pressed
-		if (has_keyboard_key) {
+		if (send_empty) {
 			tud_hid_keyboard_report(REPORT_ID_KEYBOARD, 0, NULL);
 		}
-		has_keyboard_key = false;
+		send_empty = false;
 	}
 }
 
