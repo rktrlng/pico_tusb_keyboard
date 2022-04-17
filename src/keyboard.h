@@ -21,8 +21,6 @@ struct PinKey {
 class KeyBoard
 {
 private:
-	uint32_t state = 0; // 'register' for the state of 32 keys
-
 	// ===========================================================================
 	// set these values to your situation
 	const static int num_pins = 11; // // max 32 pins (state is uint32_t)
@@ -68,12 +66,12 @@ public:
 
 		// read pins and set list of max 6 keycodes
 		uint8_t index = 0;
-		uint32_t new_state = 0;
+		uint32_t state = 0;
 		for (int i = 0; i < num_pins; i++) {
-			int p = gpio_get(pin_keys[i].pin); // read pin for this key
-			if (p == 1) { // pressed
+			int pin_state = gpio_get(pin_keys[i].pin); // read pin for this key
+			if (pin_state == 1) { // pressed
 				key_codes[index] = pin_keys[i].key; // set keycode
-				new_state |= (1 << i); // set bit for the pin
+				state |= (1 << i); // set bit for the pin
 
 				index++; // max is 6 keys at the time
 				if (index >= 6) {
@@ -82,14 +80,12 @@ public:
 			}
 		}
 
-		// something changed
-		if (state != new_state) {
+		// a key is down
+		if (state != 0) {
 			return true;
 		}
 
-		state = new_state;
-
-		// nothing changed
+		// no keys pressed
 		return false;
 	}
 };
