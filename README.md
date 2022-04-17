@@ -13,17 +13,17 @@ Connect pico gpio pins to usb hid keyboard keys:
 ```c++
 const static int num_pins = 11; // max 32 pins (state is uint32_t)
 const PinKey pin_keys[num_pins] = { // connect pin to keycode
-	{ 2, HID_KEY_W },
-	{ 3, HID_KEY_A },
-	{ 4, HID_KEY_S },
-	{ 5, HID_KEY_D },
-	{ 16, HID_KEY_ARROW_UP },
-	{ 17, HID_KEY_ARROW_DOWN },
-	{ 18, HID_KEY_ARROW_LEFT },
-	{ 19, HID_KEY_ARROW_RIGHT },
-	{ 20, HID_KEY_ENTER },
-	{ 21, HID_KEY_SPACE },
-	{ 22, HID_KEY_SHIFT_LEFT }
+    { 2, HID_KEY_W },
+    { 3, HID_KEY_A },
+    { 4, HID_KEY_S },
+    { 5, HID_KEY_D },
+    { 16, HID_KEY_ARROW_UP },
+    { 17, HID_KEY_ARROW_DOWN },
+    { 18, HID_KEY_ARROW_LEFT },
+    { 19, HID_KEY_ARROW_RIGHT },
+    { 20, HID_KEY_ENTER },
+    { 21, HID_KEY_SPACE },
+    { 22, HID_KEY_SHIFT_LEFT }
 };
 ```
 
