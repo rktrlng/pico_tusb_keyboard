@@ -31,7 +31,7 @@ Make sure `num_pins` is equal to the amount of actual gpio pins. In this case, t
 
 ## Hardware
 
-The input pins use the internal pull down resistor. They read `0` when **not** pressed. Connect a pin to 3.3 Volt to generate a key press for that pin.
+The input pins use the internal pull up resistor. They read `1` when **not** pressed. Connect a pin to ground to generate a key press for that pin.
 
 ```
             button
@@ -39,7 +39,7 @@ The input pins use the internal pull down resistor. They read `0` when **not** p
     pin -----+  +----- 3.3 V
 ```
 
-There's no need to debounce the buttons. The pins are polled every 10ms.
+The pins are polled once every 10ms.
 
 ## Getting started
 

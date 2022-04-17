@@ -44,10 +44,10 @@ public:
 
 	KeyBoard()
 	{
-		// set all pins to pulled down inputs
+		// set all pins to pulled up inputs
 		for (size_t i = 0; i < num_pins; i++) {
 			gpio_init(pin_keys[i].pin);
-			gpio_pull_down(pin_keys[i].pin);
+			gpio_pull_up(pin_keys[i].pin);
 			gpio_set_dir(pin_keys[i].pin, GPIO_IN);
 		}
 	}
@@ -63,13 +63,12 @@ public:
 
 		// read pins and set max 6 keycodes
 		uint8_t index = 0;
-		uint32_t state = 0;
+		uint32_t state = 0xFFFFFFFF;
 		for (int i = 0; i < num_pins; i++) {
 			int pin_state = gpio_get(pin_keys[i].pin); // read pin for this key
-			if (pin_state == 1) { // pressed
+			if (pin_state == 0) { // pressed
 				key_codes[index] = pin_keys[i].key; // set keycode
-				state |= (1 << i); // set bit for the pin
-
+				state &= ~(1 << i); // unset bit for the pin
 				index++; // max is 6 keys at the time
 				if (index >= 6) {
 					break;
@@ -78,7 +77,7 @@ public:
 		}
 
 		// is a key pressed?
-		return (state != 0) ? true : false;
+		return (state != 0xFFFFFFFF) ? true : false;
 	}
 };
 
