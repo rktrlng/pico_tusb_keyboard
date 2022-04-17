@@ -27,7 +27,7 @@ const PinKey pin_keys[num_pins] = { // connect pin to keycode
 };
 ```
 
-Make sure `num_pins` is equal to the amount of actual gpio pins. In this case, there's 11 pins.
+Make sure `num_pins` is equal to the amount of actual gpio pins. In this case, there's 11 pins. Note that the pico has 26 usable gpio pins.
 
 ## Hardware
 
