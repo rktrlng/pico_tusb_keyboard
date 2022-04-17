@@ -23,7 +23,7 @@ class KeyBoard
 private:
 	// ===========================================================================
 	// set these values to your situation
-	const static int num_pins = 11; // // max 32 pins (state is uint32_t)
+	const static int num_pins = 11; // max 32 pins (state is uint32_t)
 	const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
 		{ 2, HID_KEY_W },
 		{ 3, HID_KEY_A },

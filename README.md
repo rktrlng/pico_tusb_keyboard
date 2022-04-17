@@ -11,8 +11,8 @@ In `keyboard.h` a USB HID Keyboard report is created from pin inputs on the Pico
 Connect pico gpio pins to usb hid keyboard keys:
 
 ```c++
-const static int num_pins = 11; // max 32 pins (state is uint32_t)
-const PinKey pin_keys[num_pins] = { // connect pin to keycode
+const static int num_pins = 11; // max 32 pins
+const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
     { 2, HID_KEY_W },
     { 3, HID_KEY_A },
     { 4, HID_KEY_S },
@@ -27,11 +27,11 @@ const PinKey pin_keys[num_pins] = { // connect pin to keycode
 };
 ```
 
-Make sure `num_pins` is equal to the amount of actual gpio pins. In this case, there's 11 pins. Note that the pico has 26 usable gpio pins.
+Make sure `num_pins` is equal to the amount of pin-key combinations specified in `pin_keys`. In this case, there's connected 11 pins. Note that the pico has 26 usable gpio pins. Do **not** specify more than 32 pin-key combinations.
 
 ## Hardware
 
-The input pins use the internal pull up resistor. They read `1` when **not** pressed. Connect a pin to ground to generate a key press for that pin.
+The input pins use the internal pull up resistor on the pico. They read `1` when **not** pressed. Connect a pin to ground to generate a key press for that pin.
 
 ```
             button
@@ -41,7 +41,7 @@ The input pins use the internal pull up resistor. They read `1` when **not** pre
 
 The pins are polled once every 10ms.
 
-## Getting started
+## install Pico SDK
 
 See [Getting Started with the Raspberry Pi Pico](https://rptl.io/pico-get-started) and the README in the [pico-sdk](https://github.com/raspberrypi/pico-sdk) for information on getting up and running.
 
