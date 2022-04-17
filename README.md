@@ -36,7 +36,7 @@ The input pins use the internal pull up resistor. They read `1` when **not** pre
 ```
             button
               __
-    pin -----+  +----- 3.3 V
+    pin -----+  +----- ground
 ```
 
 The pins are polled once every 10ms.
