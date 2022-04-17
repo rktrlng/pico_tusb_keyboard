@@ -27,11 +27,17 @@ const PinKey pin_keys[num_pins] = { // connect pin to keycode
 };
 ```
 
-Make sure num_pins is equal to the amount of actual gpio pins. In this case, there's 11 pins.
+Make sure `num_pins` is equal to the amount of actual gpio pins. In this case, there's 11 pins.
 
 ## Hardware
 
-The input pins are pulled down to ground when not pressed. Connect a pin to 3.3 volt to generate a key press for that pin.
+The input pins use the internal pull down resistor. They read `0` when **not** pressed. Connect a pin to 3.3 volt to generate a key press for that pin.
+
+```
+            button
+              __
+    pin -----+  +----- 3.3 V
+```
 
 ## Getting started
 
