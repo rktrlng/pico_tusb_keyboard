@@ -52,10 +52,7 @@ public:
 		}
 	}
 
-	virtual ~KeyBoard()
-	{
-
-	}
+	virtual ~KeyBoard() { }
 
 	bool update()
 	{
@@ -64,7 +61,7 @@ public:
 			key_codes[i] = 0;
 		}
 
-		// read pins and set list of max 6 keycodes
+		// read pins and set max 6 keycodes
 		uint8_t index = 0;
 		uint32_t state = 0;
 		for (int i = 0; i < num_pins; i++) {
@@ -80,13 +77,8 @@ public:
 			}
 		}
 
-		// a key is down
-		if (state != 0) {
-			return true;
-		}
-
-		// no keys pressed
-		return false;
+		// is a key pressed?
+		return (state != 0) ? true : false;
 	}
 };
 

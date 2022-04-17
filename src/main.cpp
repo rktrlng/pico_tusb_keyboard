@@ -33,27 +33,23 @@
 #include "usb_descriptors.h"
 #include "keyboard.h"
 
-KeyBoard keyboard;
-
 //--------------------------------------------------------------------+
 // MACRO CONSTANT TYPEDEF PROTYPES
 //--------------------------------------------------------------------+
 
-/* Blink pattern
- * - 250 ms  : device not mounted
- * - 1000 ms : device mounted
- * - 2500 ms : device is suspended
- */
+// Blink pattern
 enum  {
-	BLINK_NOT_MOUNTED = 250,
-	BLINK_MOUNTED = 1000,
-	BLINK_SUSPENDED = 2500,
+	BLINK_NOT_MOUNTED = 250, // device not mounted
+	BLINK_MOUNTED = 1000,    // device mounted
+	BLINK_SUSPENDED = 2500,  // device is suspended
 };
 
 static uint32_t blink_interval_ms = BLINK_NOT_MOUNTED;
 
 void led_blinking_task(void);
 void hid_task(void);
+
+KeyBoard keyboard;
 
 /*------------- MAIN -------------*/
 int main(void)
@@ -98,7 +94,7 @@ static void send_hid_report(bool keys_pressed)
 	}
 }
 
-// Every 10ms, we will send a REPORT_ID_KEYBOARD report
+// Every 10ms, we poll the pins and send a report
 void hid_task(void)
 {
 	// Poll every 10ms
@@ -118,8 +114,7 @@ void hid_task(void)
 		// and REMOTE_WAKEUP feature is enabled by host
 		tud_remote_wakeup();
 	} else {
-		// Send the 1st of report chain, the rest will be sent by tud_hid_report_complete_cb()
-		// however, we only send REPORT_ID_KEYBOARD reports
+		// send a report
 		send_hid_report(keys_pressed);
 	}
 }
@@ -132,13 +127,6 @@ void tud_hid_report_complete_cb(uint8_t instance, uint8_t const* report, uint8_t
 	// not implemented, we only send REPORT_ID_KEYBOARD
 	(void) instance;
 	(void) len;
-
-	// uint8_t next_report_id = report[0] + 1;
-
-	// if (next_report_id < REPORT_ID_COUNT)
-	// {
-	// 	send_hid_report(next_report_id, board_button_read());
-	// }
 }
 
 // Invoked when received GET_REPORT control request
