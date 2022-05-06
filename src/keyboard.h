@@ -22,7 +22,7 @@ class KeyBoard
 private:
 	// ===========================================================================
 	// set these values to your situation
-	const static int num_pins = 26;		// max 32 pins (state is uint32_t)
+	const static size_t num_pins = 26;		// max 32 pins (state is uint32_t)
 	const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
 		{0, HID_KEY_1},					// 1 player
 		{1, HID_KEY_5},					// coin slot 1
@@ -49,7 +49,8 @@ private:
 		{22, HID_KEY_ENTER},		// select
 		{26, HID_KEY_ESCAPE},		// back
 		{27, HID_KEY_SHIFT_RIGHT},
-		{28, HID_KEY_BACKSPACE}};
+		{28, HID_KEY_BACKSPACE}
+	};
 	// ===========================================================================
 
 public:
@@ -78,15 +79,15 @@ public:
 
 		// read pins and set max 6 keycodes
 		uint8_t index = 0;
-		uint32_t state = 0xFFFFFFFF;
-		for (int i = 0; i < num_pins; i++)
+		bool changed = false;
+		for (size_t i = 0; i < num_pins; i++)
 		{
 			int pin_state = gpio_get(pin_keys[i].pin); // read pin for this key
 			if (pin_state == 0)
 			{										// pressed
 				key_codes[index] = pin_keys[i].key; // set keycode
-				state &= ~(1 << i);					// unset bit for the pin
-				index++;							// max is 6 keys at the time
+				changed = true;
+				index++;							// max is 6 key presses
 				if (index >= 6)
 				{
 					break;
@@ -94,8 +95,7 @@ public:
 			}
 		}
 
-		// is a key pressed?
-		return (state != 0xFFFFFFFF) ? true : false;
+		return changed;
 	}
 };
 
