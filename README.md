@@ -11,8 +11,8 @@ In `keyboard.h` a USB HID Keyboard report is created from pin inputs on the Pico
 Connect pico gpio pins to usb hid keyboard keys:
 
 ```c++
-const static int num_pins = 11; // max 32 pins
-const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
+const static int num_pins = 11;
+const PinKey pin_keys[num_pins] = { // map gpio pin to keycode
     { 2, HID_KEY_W },
     { 3, HID_KEY_A },
     { 4, HID_KEY_S },
@@ -27,7 +27,7 @@ const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
 };
 ```
 
-Make sure `num_pins` is equal to the amount of pin-key combinations specified in `pin_keys`. In this case, there's connected 11 pins. Note that the pico has 26 usable gpio pins. Do **not** specify more than 32 pin-key combinations.
+Make sure `num_pins` is equal to the amount of pin-key combinations specified in `pin_keys`. In this case, there's 11 connected pins. Note that the pico has 26 usable gpio pins.
 
 ## Hardware
 

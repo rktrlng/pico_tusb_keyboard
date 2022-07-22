@@ -13,7 +13,7 @@
 
 struct PinKey
 {
-	const int pin;	   // pico pin number
+	const uint8_t pin; // pico pin number
 	const uint8_t key; // HID_KEY_*
 };
 
@@ -22,8 +22,8 @@ class KeyBoard
 private:
 	// ===========================================================================
 	// set these values to your situation
-	const static size_t num_pins = 26;		// max 32 pins (state is uint32_t)
-	const PinKey pin_keys[num_pins] = { // connect gpio pin to keycode
+	const static size_t num_pins = 26;
+	const PinKey pin_keys[num_pins] = { // map gpio pin to keycode
 		{0, HID_KEY_1},					// 1 player
 		{1, HID_KEY_5},					// coin slot 1
 		{2, HID_KEY_ARROW_UP},
