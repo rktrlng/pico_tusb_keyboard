@@ -43,7 +43,7 @@ The input pins use the internal pull up resistor on the pico. They read `1` when
 
 The pins are polled once every 10ms.
 
-## install Pico SDK
+## Install Pico SDK
 
 See [Getting Started with the Raspberry Pi Pico](https://rptl.io/pico-get-started) and the README in the [pico-sdk](https://github.com/raspberrypi/pico-sdk) for information on getting up and running.
 
