@@ -64,7 +64,7 @@ The upload script will compile the code and upload the compiled firmware to the 
 
 The HID keycodes are defined in `pico-sdk/lib/tinyusb/src/class/hid/hid.h`.
 
-```
+```c
 //--------------------------------------------------------------------+
 // HID KEYCODE
 //--------------------------------------------------------------------+
