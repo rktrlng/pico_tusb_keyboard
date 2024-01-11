@@ -10,7 +10,7 @@ In `keyboard.h` a USB HID Keyboard report is created from pin inputs on the Pico
 
 Connect pico gpio pins to usb hid keyboard keys:
 
-```c++
+```c
 const static int num_pins = 11;
 const PinKey pin_keys[num_pins] = { // map gpio pin to keycode
     { 2, HID_KEY_W },
