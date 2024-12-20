@@ -2,10 +2,13 @@
 
 file=keyboard
 
+export PICO_PLATFORM=rp2040
+export PICO_BOARD=pico
+
 mkdir -p build
 cd build
-cmake ..
-make ${file}
+cmake -DCMAKE_BUILD_TYPE=Release ..
+cmake --build . --target ${file}
 
 if [[ "$OSTYPE" == "darwin"* ]]; then
 	cp src/${file}.uf2 /Volumes/RPI-RP2
